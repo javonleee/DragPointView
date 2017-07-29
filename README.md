@@ -9,7 +9,7 @@ Add this in your project `build.gradle` file:
 
 ```gradle
 allprojects {
-	repositories {
+    repositories {
         maven { url "https://jitpack.io" }
     }
 }
