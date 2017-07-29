@@ -18,7 +18,7 @@ import com.javonlee.dragpointview.util.MathUtils;
 /**
  * Created by Administrator on 2017/7/15.
  */
-public class DragPointViewWindow extends AbsDragPointView implements ValueAnimator.AnimatorUpdateListener, Animator.AnimatorListener {
+class DragPointViewWindow extends AbsDragPointView implements ValueAnimator.AnimatorUpdateListener, Animator.AnimatorListener {
 
     private DragPointView origView;
     private Bitmap origBitmap;
