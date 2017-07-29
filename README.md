@@ -18,7 +18,7 @@ allprojects {
 Then, add the library to your module `build.gradle`
 ```gradle
 dependencies {
-    compile 'com.github.javonleee:DragPointView:v1.0'
+    compile 'com.github.javonleee:DragPointView:latest.release'
 }
 ```
 
@@ -38,9 +38,6 @@ There is a [sample](https://github.com/javonleee/DragPointView/tree/master/sampl
 	android:id="@+id/drag_point_view"
 	android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|top"
-	android:layout_marginRight="6dp"
-	android:layout_marginTop="3dp"
 	android:background="@drawable/shape_drag_point_red"
 	android:gravity="center"
 	android:text="66"
