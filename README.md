@@ -88,7 +88,8 @@ public void onRemoveStart(AbsDragPointView view) {
 
 Author
 ------
-email - javonlee@163.com | javonlee999@gmail.com
+javonlee@163.com
+javonlee999@gmail.com
 
 
 License
