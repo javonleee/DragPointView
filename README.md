@@ -71,7 +71,7 @@ You can customize the desired effect by setting the following properties in the 
 - **canDrag**:Controls whether or not to allow drag and drop.
 
 
-## Attention
+## Caution
 When the DragPointView that sets the clearSign property is removed, be sure to update the relevant object information in the onRemoveStart or onRemoveEnd callback.For example, set all chat sessions to read.
 ```java
 @Override
