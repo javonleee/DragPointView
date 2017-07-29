@@ -12,7 +12,6 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-import com.javonlee.dragpointview.util.ClearViewHelper;
 import com.javonlee.dragpointview.util.MathUtils;
 
 /**

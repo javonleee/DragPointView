@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 
-import com.javonlee.dragpointview.util.ClearViewHelper;
+import com.javonlee.dragpointview.view.ClearViewHelper;
 import com.javonlee.dragpointview.view.AbsDragPointView;
 
 /**
