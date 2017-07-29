@@ -1,4 +1,4 @@
-package com.javonlee.dragpointview.view;
+package com.javonlee.dragpointview;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -14,9 +14,11 @@ import android.view.MotionEvent;
 
 import com.javonlee.dragpointview.util.ClearViewHelper;
 import com.javonlee.dragpointview.util.MathUtils;
+import com.javonlee.dragpointview.view.AbsDragPointView;
+import com.javonlee.dragpointview.view.DragPointView;
 
 /**
- * Created by Administrator on 2017/7/15.
+ * Created by lijinfeng on 2017/7/15.
  */
 class DragPointViewWindow extends AbsDragPointView implements ValueAnimator.AnimatorUpdateListener, Animator.AnimatorListener {
 
