@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="DragPointView">
+
+        <!-- 可拖拽的最大距离 -->
+        <attr name="maxDragLength" format="dimension"/>
+        <!-- 固定圆形的半径 最大为Math.min(width,height/2) -->
+        <attr name="centerCircleRadius" format="dimension"/>
+        <!-- 拖拽圆形的半径 最大为Math.min(width,height/2) -->
+        <attr name="dragCircleRadius" format="dimension"/>
+        <!-- 拖拽时固定圆形的缩放最小系数 0~1.f -->
+        <attr name="centerMinRatio" format="float"/>
+        <!-- 在可拖拽范围为释放时回弹动画时长 -->
+        <attr name="recoveryAnimDuration" format="integer"/>
+        <!-- 回弹动画Bounce效果系数 -->
+        <attr name="recoveryAnimBounce" format="float"/>
+        <!-- 拉伸部分（贝塞尔曲线绘制部分）颜色 -->
+        <attr name="colorStretching" format="color"/>
+        <!-- 分类标记 -->
+        <attr name="sign" format="string"/>
+        <!-- 移除时需要清楚的分类标记 -->
+        <attr name="clearSign" format="string"/>
+        <!-- 是否允许拖拽 -->
+        <attr name="canDrag" format="boolean"/>
+
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DragPointView-master.iml" filepath="$PROJECT_DIR$/DragPointView-master.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dragpointview/dragpointview.iml" filepath="$PROJECT_DIR$/dragpointview/dragpointview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+    </modules>
+  </component>
+</project>
