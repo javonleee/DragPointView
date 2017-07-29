@@ -1,7 +1,8 @@
 # DragPointView
-This is a handy developer to quickly implement drag and drop unread messages, widget, which you can use as you do with TextView, and customize detail effects with extra attributes and method.
 
 [![](https://jitpack.io/v/javonleee/DragPointView.svg)](https://jitpack.io/#javonleee/DragPointView) [![Build Status](https://travis-ci.org/javonleee/DragPointView.svg?branch=master)](https://travis-ci.org/javonleee/DragPointView) [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+
+This is a handy developer to quickly implement drag and drop unread messages, widget, which you can use as you do with TextView, and customize detail effects with extra attributes and method.
 
 ## Dependency
 
