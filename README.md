@@ -1,11 +1,11 @@
-# PhotoView
-PhotoView aims to help produce an easily usable implementation of a zooming Android ImageView.
+# DragPointView
+This is a handy developer to quickly implement drag and drop unread messages, widget, which you can use as you do with TextView, and customize detail effects with extra attributes and method.
 
-[![](https://jitpack.io/v/chrisbanes/PhotoView.svg)](https://jitpack.io/#chrisbanes/PhotoView) [![Build status](https://ci.appveyor.com/api/projects/status/bv0oc6hhf6d9dhur?svg=true)](https://ci.appveyor.com/project/Jawnnypoo/photoview)
+[![](https://jitpack.io/v/javonleee/DragPointView.svg)](https://jitpack.io/#javonleee/DragPointView)
 
 ## Dependency
 
-Add this in your root `build.gradle` file (**not** your module `build.gradle` file):
+Add this in your project `build.gradle` file:
 
 ```gradle
 allprojects {
@@ -18,50 +18,71 @@ allprojects {
 Then, add the library to your module `build.gradle`
 ```gradle
 dependencies {
-    compile 'com.github.chrisbanes:PhotoView:latest.release.here'
+    compile 'com.github.javonleee:DragPointView:v1.0'
 }
 ```
 
 ## Features
-- Out of the box zooming, using multi-touch and double-tap.
-- Scrolling, with smooth scrolling fling.
-- Works perfectly when used in a scrolling parent (such as ViewPager).
-- Allows the application to be notified when the displayed Matrix has changed. Useful for when you need to update your UI based on the current zoom/scroll position.
-- Allows the application to be notified when the user taps on the Photo.
+- Integrated in TextView, easy to use.
+- Bessel curve is used to achieve tensile effect.
+- Provide you with rich attributes to customize various effects, such as maximum length of drag and drop, front and rear round radius, curve part color, radius scaling coefficient, etc.
+- Drag and drop actions are not restricted by the parent container, and the screen is free to drag and drop.
+- Allows settings to release animation, Animator or AnimationDrawable.
+- External development status monitoring, monitoring the status of the widget.
+- Convenient to clear the widget of the same sign.
 
 ## Usage
-There is a [sample](https://github.com/chrisbanes/PhotoView/tree/master/sample) provided which shows how to use the library in a more advanced way, but for completeness, here is all that is required to get PhotoView working:
+There is a [sample](https://github.com/javonleee/DragPointView/tree/master/sample) provided which shows how to use the library in a more advanced way, but for completeness, here is all that is required to get DragPointView working:
 ```xml
-<com.github.chrisbanes.photoview.PhotoView
-    android:id="@+id/photo_view"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+<com.javonlee.dragpointview.view.DragPointView
+	android:id="@+id/drag_point_view"
+	android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|top"
+	android:layout_marginRight="6dp"
+	android:layout_marginTop="3dp"
+	android:background="@drawable/shape_drag_point_red"
+	android:gravity="center"
+	android:text="66"
+	android:textColor="#fff"
+	android:textSize="16sp"
+	app:centerMinRatio="0.5"
+	app:clearSign="test"
+	app:colorStretching="#f00"
+	app:dragCircleRadius="100dp"
+	app:maxDragLength="100dp"
+	app:recoveryAnimBounce="0.25" />
 ```
 ```java
-PhotoView photoView = (PhotoView) findViewById(R.id.photo_view);
-photoView.setImageResource(R.drawable.image);
+DragPointView dragPointView = (DragPointView) findViewById(R.id.drag_point_view);
+pointView.setRemoveAnim(animationDrawable);
+pointView.setOnPointDragListener(listener);
 ```
 That's it!
 
-## Issues With ViewGroups
-There are some ViewGroups (ones that utilize onInterceptTouchEvent) that throw exceptions when a PhotoView is placed within them, most notably [ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) and [DrawerLayout](https://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html). This is a framework issue that has not been resolved. In order to prevent this exception (which typically occurs when you zoom out), take a look at [HackyDrawerLayout](https://github.com/chrisbanes/PhotoView/blob/master/sample/src/main/java/uk/co/senab/photoview/sample/HackyDrawerLayout.java) and you can see the solution is to simply catch the exception. Any ViewGroup which uses onInterceptTouchEvent will also need to be extended and exceptions caught. Use the [HackyDrawerLayout](https://github.com/chrisbanes/PhotoView/blob/master/sample/src/main/java/uk/co/senab/photoview/sample/HackyDrawerLayout.java) as a template of how to do so. The basic implementation is:
+###Attribute
+You can customize the desired effect by setting the following properties in the layout file.
+- **maxDragLength**:Within this range, the Bessel rendering section will be shown, with the default value of Math.min (w, h)*3.
+- **centerCircleRadius**:The initial radius of the center circle.
+- **dragCircleRadius**:The initial radius of the drag circle.
+- **centerMinRatio**:When dragging, the center circle becomes smaller and smaller with distance, and the property controls its minimum coefficient range: 0.5f~1.0f.
+- r**ecoveryAnimDuration**:If the stretch length is not up to the threshold, the animation will be recovery, specifying the length of the animation.
+- **recoveryAnimBounce**:recovery animation bounce factor, range 0.0f~1.0f.
+- **colorStretching**:Bessel painted some colors, recommended consistent with the widget background.
+- **sign**:Mark the category of this control and use it with clearSign.
+- **clearSign**:The clearSign specified widgets are removed at the same time as they are removed.
+- **canDrag**:Controls whether or not to allow drag and drop.
+
+
+## Attention
+When the DragPointView that sets the clearSign property is removed, be sure to update the relevant object information in the onRemoveStart or onRemoveEnd callback.For example, set all chat sessions to read.
 ```java
-public class HackyProblematicViewGroup extends ProblematicViewGroup {
-
-    public HackyProblematicViewGroup(Context context) {
-        super(context);
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        try {
-            return super.onInterceptTouchEvent(ev);
-        } catch (IllegalArgumentException e) {
-						//uncomment if you really want to see these errors
-            //e.printStackTrace();
-            return false;
+@Override
+public void onRemoveStart(AbsDragPointView view) {
+	for (ConversationEntity entity : conversationEntities) {
+		entity.setRead(true);
+		entity.setMessageNum(0);
         }
-    }
 }
 ```
 
@@ -74,7 +95,7 @@ This library aims to keep the zooming implementation simple. If you are looking 
 License
 --------
 
-    Copyright 2017 Chris Banes
+    Copyright 2017 Javon Lee
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
