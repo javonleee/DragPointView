@@ -83,12 +83,6 @@ public void onRemoveStart(AbsDragPointView view) {
 }
 ```
 
-## Usage with Fresco
-Due to the complex nature of Fresco, this library does not currently support Fresco. See [this project](https://github.com/ongakuer/PhotoDraweeView) as an alternative solution.
-
-## Subsampling Support
-This library aims to keep the zooming implementation simple. If you are looking for an implementation that supports subsampling, check out [this project](https://github.com/davemorrissey/subsampling-scale-image-view)
-
 License
 --------
 
