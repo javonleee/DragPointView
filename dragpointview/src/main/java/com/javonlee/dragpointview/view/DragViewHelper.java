@@ -53,7 +53,7 @@ public class DragViewHelper implements View.OnTouchListener, OnPointDragListener
         windowParams = new WindowManager.LayoutParams();
         windowParams.gravity = Gravity.LEFT | Gravity.TOP;
         windowParams.format = PixelFormat.TRANSLUCENT;
-        windowParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR;
+        windowParams.type = WindowManager.LayoutParams.TYPE_TOAST;
         windowParams.flags = WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
         windowParams.width = WindowManager.LayoutParams.MATCH_PARENT;
         windowParams.height = WindowManager.LayoutParams.MATCH_PARENT;
