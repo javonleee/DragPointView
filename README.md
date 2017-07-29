@@ -1,7 +1,9 @@
 # DragPointView
-This is a handy developer to quickly implement drag and drop unread messages, widget, which you can use as you do with TextView, and customize detail effects with extra attributes and method.
 
-[![](https://jitpack.io/v/javonleee/DragPointView.svg)](https://jitpack.io/#javonleee/DragPointView) [![Build Status](https://travis-ci.org/javonleee/DragPointView.svg?branch=master)](https://travis-ci.org/javonleee/DragPointView) [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+[![](https://jitpack.io/v/javonleee/DragPointView.svg)](https://jitpack.io/#javonleee/DragPointView) [![Build Status](https://travis-ci.org/javonleee/DragPointView.svg?branch=master)](https://travis-ci.org/javonleee/DragPointView) [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html) [![作者](https://img.shields.io/badge/author-javonlee-green.svg)](http://www.gdky005.com)
+
+
+This is a handy developer to quickly implement drag and drop unread messages, widget, which you can use as you do with TextView, and customize detail effects with extra attributes and method.
 
 ## Dependency
 
@@ -84,10 +86,17 @@ public void onRemoveStart(AbsDragPointView view) {
 ```
 
 
+Author
+------
+javonlee@163.com
+
+javonlee999@gmail.com
+
+
 License
 --------
 
-    Copyright 2017 Javon Lee
+    Copyright 2017 javonlee
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
