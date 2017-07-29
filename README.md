@@ -18,7 +18,7 @@ allprojects {
 Then, add the library to your module `build.gradle`
 ```gradle
 dependencies {
-    compile 'com.github.javonleee:DragPointView:v1.0'
+    compile 'com.github.javonleee:DragPointView:latest.release'
 }
 ```
 
