@@ -5,7 +5,7 @@
 
 This is a handy developer to quickly implement drag and drop unread messages, widget, which you can use as you do with TextView, and customize detail effects with extra attributes and method.
 
-![](static/example_1.gif)  ![](static/example_2.gif)  ![](static/example_3.gif)
+![](static/example_1.gif)   ![](static/example_2.gif)   ![](static/example_3.gif)
 
 ## Dependency
 
