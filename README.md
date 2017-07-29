@@ -1,57 +1,80 @@
-GestureViews
-============
+# PhotoView
+PhotoView aims to help produce an easily usable implementation of a zooming Android ImageView.
 
-[![Maven Central][mvn-img]][mvn-url]
-[![Size][size-img]][size-url]
+[![](https://jitpack.io/v/chrisbanes/PhotoView.svg)](https://jitpack.io/#chrisbanes/PhotoView) [![Build status](https://ci.appveyor.com/api/projects/status/bv0oc6hhf6d9dhur?svg=true)](https://ci.appveyor.com/project/Jawnnypoo/photoview)
 
-ImageView and FrameLayout with gestures control and position animation.
+## Dependency
 
-Main goal of this library is to make images viewing process as smooth as possible and to make it
-easier for developers to integrate it into their apps. 
+Add this in your root `build.gradle` file (**not** your module `build.gradle` file):
 
-#### Features ####
+```gradle
+allprojects {
+	repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
+```
 
-- Gestures support: pan, zoom, quick scale, fling, double tap, rotation.
-- [Seamless integration](https://github.com/alexvasilkov/GestureViews/wiki/Usage#viewpager) with ViewPager (panning smoothly turns into ViewPager flipping and vise versa).
-- [View position animation](https://github.com/alexvasilkov/GestureViews/wiki/Basic-animations) ("opening" animation). Useful to animate into full image view mode.
-- [Advanced animation](https://github.com/alexvasilkov/GestureViews/wiki/Advanced-animations) from RecyclerView (or ListView) into ViewPager.
-- Exit full image mode by scroll and scale gestures.
-- Rounded images with animations support. 
-- [Image cropping](https://github.com/alexvasilkov/GestureViews/wiki/Image-cropping) (supports rotation).
-- [Lots of settings](https://github.com/alexvasilkov/GestureViews/wiki/Settings).
-- [Gestures listener](https://github.com/alexvasilkov/GestureViews/wiki/Usage#listeners): down (touch), up (touch), single tap, double tap, long press.
-- Custom state animation (animating position, zoom, rotation).
-- Supports both ImageView and FrameLayout out of the box, also supports [custom views](https://github.com/alexvasilkov/GestureViews/wiki/Custom-views).
+Then, add the library to your module `build.gradle`
+```gradle
+dependencies {
+    compile 'com.github.chrisbanes:PhotoView:latest.release.here'
+}
+```
 
-#### Sample app ####
+## Features
+- Out of the box zooming, using multi-touch and double-tap.
+- Scrolling, with smooth scrolling fling.
+- Works perfectly when used in a scrolling parent (such as ViewPager).
+- Allows the application to be notified when the displayed Matrix has changed. Useful for when you need to update your UI based on the current zoom/scroll position.
+- Allows the application to be notified when the user taps on the Photo.
 
-<a href="http://play.google.com/store/apps/details?id=com.alexvasilkov.gestures.sample">
-  <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/apps/en-play-badge-border.png" height="64" />
-</a>
+## Usage
+There is a [sample](https://github.com/chrisbanes/PhotoView/tree/master/sample) provided which shows how to use the library in a more advanced way, but for completeness, here is all that is required to get PhotoView working:
+```xml
+<com.github.chrisbanes.photoview.PhotoView
+    android:id="@+id/photo_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+```
+```java
+PhotoView photoView = (PhotoView) findViewById(R.id.photo_view);
+photoView.setImageResource(R.drawable.image);
+```
+That's it!
 
-#### Demo video ####
+## Issues With ViewGroups
+There are some ViewGroups (ones that utilize onInterceptTouchEvent) that throw exceptions when a PhotoView is placed within them, most notably [ViewPager](http://developer.android.com/reference/android/support/v4/view/ViewPager.html) and [DrawerLayout](https://developer.android.com/reference/android/support/v4/widget/DrawerLayout.html). This is a framework issue that has not been resolved. In order to prevent this exception (which typically occurs when you zoom out), take a look at [HackyDrawerLayout](https://github.com/chrisbanes/PhotoView/blob/master/sample/src/main/java/uk/co/senab/photoview/sample/HackyDrawerLayout.java) and you can see the solution is to simply catch the exception. Any ViewGroup which uses onInterceptTouchEvent will also need to be extended and exceptions caught. Use the [HackyDrawerLayout](https://github.com/chrisbanes/PhotoView/blob/master/sample/src/main/java/uk/co/senab/photoview/sample/HackyDrawerLayout.java) as a template of how to do so. The basic implementation is:
+```java
+public class HackyProblematicViewGroup extends ProblematicViewGroup {
 
-[YouTube](https://youtu.be/KDJj08qN7n4)
+    public HackyProblematicViewGroup(Context context) {
+        super(context);
+    }
 
-[![Demo video](https://github.com/alexvasilkov/GestureViews/raw/master/sample/art/demo.gif)](https://youtu.be/KDJj08qN7n4)  
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        try {
+            return super.onInterceptTouchEvent(ev);
+        } catch (IllegalArgumentException e) {
+						//uncomment if you really want to see these errors
+            //e.printStackTrace();
+            return false;
+        }
+    }
+}
+```
 
-#### Usage ####
+## Usage with Fresco
+Due to the complex nature of Fresco, this library does not currently support Fresco. See [this project](https://github.com/ongakuer/PhotoDraweeView) as an alternative solution.
 
-Add dependency to your `build.gradle` file:
+## Subsampling Support
+This library aims to keep the zooming implementation simple. If you are looking for an implementation that supports subsampling, check out [this project](https://github.com/davemorrissey/subsampling-scale-image-view)
 
-    compile 'com.alexvasilkov:gesture-views:2.3.1'
+License
+--------
 
-Note: min SDK version for library is 9, but it was tested mainly on 15+.
-
-[Usage wiki](https://github.com/alexvasilkov/GestureViews/wiki/Usage)
-
-[Javadoc][javadoc-url]
-
-[Sample app sources](https://github.com/alexvasilkov/GestureViews/tree/master/sample)
-
-#### License ####
-
-    Copyright 2014 Alex Vasilkov
+    Copyright 2017 Chris Banes
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -64,11 +87,3 @@ Note: min SDK version for library is 9, but it was tested mainly on 15+.
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
-
-[mvn-url]: https://maven-badges.herokuapp.com/maven-central/com.alexvasilkov/gesture-views
-[mvn-img]: https://img.shields.io/maven-central/v/com.alexvasilkov/gesture-views.svg?style=flat-square
-
-[size-url]: http://www.methodscount.com/?lib=com.alexvasilkov%3Agesture-views%3A2.3.1
-[size-img]: https://img.shields.io/badge/Methods%20and%20size-1014%20%7C%20133%20KB-e91e63.svg?style=flat-square
-
-[javadoc-url]: http://javadoc.io/doc/com.alexvasilkov/gesture-views
