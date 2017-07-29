@@ -104,6 +104,8 @@ public class DragViewHelper implements View.OnTouchListener, OnPointDragListener
         windowView.setOrigBitmap(bitmap);
         onPointDragListener = originView.getOnPointDragListener();
         windowView.setVisibility(View.VISIBLE);
+        if(container.getParent() != null)
+            windowManager.removeView(container);
         windowManager.addView(container, windowParams);
         originView.setVisibility(View.INVISIBLE);
     }
