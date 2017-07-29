@@ -1,4 +1,4 @@
-package com.javonlee.dragpointview.util;
+package com.javonlee.dragpointview.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -10,9 +10,6 @@ import android.view.ViewParent;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 
-import com.javonlee.dragpointview.view.AbsDragPointView;
-import com.javonlee.dragpointview.view.DragPointView;
-import com.javonlee.dragpointview.view.DragPointViewWindow;
 import com.javonlee.dragpointview.OnPointDragListener;
 
 /**

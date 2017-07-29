@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
 import com.javonlee.dragpointview.demo.R;
-import com.javonlee.dragpointview.util.DragViewHelper;
 import com.javonlee.dragpointview.util.MathUtils;
 
 /**
