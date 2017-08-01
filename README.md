@@ -27,7 +27,7 @@ dependencies {
 ```
 
 ## Features
-- Integrated in TextView, easy to use.
+- Inherited from TextView, easy to use.
 - Bessel curve is used to achieve tensile effect.
 - Provide you with rich attributes to customize various effects, such as maximum length of drag and drop, front and rear round radius, curve part color, radius scaling coefficient, etc.
 - Drag and drop actions are not restricted by the parent container, and the screen is free to drag and drop.
